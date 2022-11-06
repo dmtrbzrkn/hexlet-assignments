@@ -9,8 +9,8 @@ class App {
         boolean isPossible = false;
         List<Character> lettersList = convertToArrayList(lettersSet);
         List<Character> wordList = convertToArrayList(word);
-        for (Character character : wordList) {
-            isPossible = lettersList.contains(character);
+        for (Character letters : lettersList) {
+            isPossible = wordList.contains(letters);
         }
         return isPossible;
     }
