@@ -27,7 +27,7 @@ class App {
         var temp = new StringBuilder();
         temp.append("{");
         for (Map.Entry<String, Integer> count : dictionary.entrySet()) {
-            temp.append("\n   ").append(count.getKey()).append(":  ").append(count.getValue());
+            temp.append("\n").append(count.getKey()).append(":  ").append(count.getValue());
         }
         temp.append("\n}");
         return String.valueOf(temp);
