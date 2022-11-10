@@ -13,30 +13,20 @@ class AppTest {
     @Test
     void testTake() {
         // BEGIN
-        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 9, 2, 4, 6, 8, 0));
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> expected1 = new ArrayList<>();
+        List<Integer> result1 = App.take(list1, 3);
+        assertThat(result1).isEqualTo(expected1);
 
-        List<Integer> emptyList = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        List<Integer> expected2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        List<Integer> result2 = App.take(list2, 10);
+        assertThat(result2).isEqualTo(expected2);
 
-        int actual1 = App.take(numbers, 3).size();
-        assertThat(actual1).isEqualTo(3);
-
-        int actual2 = App.take(numbers, 7).size();
-        assertThat(actual2).isEqualTo(7);
-
-        List<Integer> actual3 = App.take(numbers, 0);
-        assertThat(actual3).isEmpty();
-
-        int actual4 = App.take(numbers, 13).size();
-        assertThat(actual4).isEqualTo(10);
-
-        List<Integer> actual5 = App.take(numbers, -1);
-        assertThat(actual5).isEmpty();
-
-        int actual6 = App.take(numbers, 9).size();
-        assertThat(actual6).isEqualTo(9);
-
-        List<Integer> actual7 = App.take(emptyList, 4);
-        assertThat(actual7).isEmpty();
+        List<Integer> list3 = new ArrayList<>(Arrays.asList(1, 2, 3));
+        List<Integer> expected3 = new ArrayList<>(Arrays.asList(1, 2));
+        List<Integer> result3 = App.take(list3, 2);
+        assertThat(result3).isEqualTo(expected3);
         // END
     }
 }
