@@ -1,21 +1,21 @@
 package exercise;
 
 // BEGIN
-public class Point {
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
+class Point {
     private int x;
     private int y;
 
+    Point(int coordinateX, int coordinateY) {
+        this.x = coordinateX;
+        this.y = coordinateY;
+    }
+
     public int getX() {
-        return x;
+        return this.x;
     }
 
     public int getY() {
-        return y;
+        return this.y;
     }
 }
 // END
