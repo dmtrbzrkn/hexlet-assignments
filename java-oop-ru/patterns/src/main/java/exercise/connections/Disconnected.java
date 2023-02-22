@@ -6,7 +6,7 @@ import exercise.TcpConnection;
 public class Disconnected implements Connection {
     private TcpConnection tcpConnection;
 
-    public Disconnected(TcpConnection tcpConnection) {\
+    public Disconnected(TcpConnection tcpConnection) {
         this.tcpConnection = tcpConnection;
     }
 
