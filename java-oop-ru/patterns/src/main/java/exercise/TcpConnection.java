@@ -14,7 +14,7 @@ public class TcpConnection {
     private Connection connectionState;
     private List<String> buffer = new ArrayList<>();
 
-    public TcpConnection(String ipAddress, int portNumber, Connection connectionState) {
+    public TcpConnection(String ipAddress, int portNumber) {
         this.ipAddress = ipAddress;
         this.portNumber = portNumber;
         this.connectionState = new Disconnected(this);
