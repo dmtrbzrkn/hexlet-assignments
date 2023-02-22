@@ -4,6 +4,7 @@ public interface Connection {
     // BEGIN
     void connect();
     void disconnect();
-    String getCurrentState();
+    void write(String data);
+    String getName();
     // END
 }

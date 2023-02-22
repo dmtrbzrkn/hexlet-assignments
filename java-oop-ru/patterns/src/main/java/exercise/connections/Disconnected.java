@@ -4,25 +4,25 @@ import exercise.TcpConnection;
 
 // BEGIN
 public class Disconnected implements Connection {
-    private TcpConnection tcpConnection;
+    private TcpConnection connection;
 
-    public Disconnected(TcpConnection tcpConnection) {
-        this.tcpConnection = tcpConnection;
+    public Disconnected(TcpConnection connection) {
+        this.connection = connection;
     }
 
-    @Override
     public void connect() {
-        this.tcpConnection.setConnectionState(new Connected(this.tcpConnection));
-        System.out.println("Connected");
+        connection.setState(new Connected(connection));
     }
 
-    @Override
     public void disconnect() {
-        System.out.println("Error! Already disconnected");
+        System.out.println("Error! Connection already disconnected");
     }
 
-    @Override
-    public String getCurrentState() {
+    public void write(String data) {
+        System.out.println("Error! It is not posible write to closed connection");
+    }
+
+    public String getName() {
         return "disconnected";
     }
 }

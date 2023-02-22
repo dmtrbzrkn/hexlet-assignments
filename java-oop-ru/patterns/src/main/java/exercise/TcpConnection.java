@@ -5,43 +5,43 @@ import exercise.connections.Disconnected;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Objects;
 
 // BEGIN
 public class TcpConnection {
-    private String ipAddress;
-    private int portNumber;
-    private Connection connectionState;
+
+    private String ip;
+    private int port;
+    private Connection state;
     private List<String> buffer = new ArrayList<>();
 
-    public TcpConnection(String ipAddress, int portNumber) {
-        this.ipAddress = ipAddress;
-        this.portNumber = portNumber;
-        this.connectionState = new Disconnected(this);
-    }
-
-    public void setConnectionState(Connection connectionState) {
-        this.connectionState = connectionState;
+    TcpConnection(String ip, int port) {
+        this.ip = ip;
+        this.port = port;
+        this.state = new Disconnected(this);
     }
 
     public String getCurrentState() {
-        return this.connectionState.getCurrentState();
+        return this.state.getName();
     }
 
     public void connect() {
-        this.connectionState.connect();
+        state.connect();
     }
 
     public void disconnect() {
-        this.connectionState.disconnect();
+        state.disconnect();
     }
 
     public void write(String data) {
-        if (Objects.equals(this.connectionState.getCurrentState(), "connected")) {
-            this.buffer.add(data);
-        } else {
-            System.out.println("Error! Can't write while disconnected");
-        }
+        state.write(data);
+    }
+
+    public void setState(Connection stateObject) {
+        state = stateObject;
+    }
+
+    public void addToBuffer(String data) {
+        buffer.add(data);
     }
 }
 // END
