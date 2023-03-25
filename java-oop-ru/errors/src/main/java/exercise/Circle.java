@@ -5,7 +5,7 @@ public class Circle {
     private final int radius;
     Point point;
 
-    public Circle(int radius, Point point) {
+    public Circle(Point point, int radius) {
         this.radius = radius;
         this.point = point;
     }
