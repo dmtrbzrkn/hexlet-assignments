@@ -23,9 +23,11 @@ class App {
         List<String> wordsList = new ArrayList<>(Arrays.asList(wordsArray));
 
         for (String word : wordsList) {
-            int wordCount = result.getOrDefault(word, 0);
-            wordCount += 1;
-            result.put(word, wordCount);
+            if (result.containsKey(word)) {
+                result.put(word, result.get(word) + 1);
+            } else {
+                result.put(word, 1);
+            }
         }
         return result;
     }
