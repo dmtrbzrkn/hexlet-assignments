@@ -1,36 +1,46 @@
 package exercise;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 // BEGIN
 class App {
-    public static Map<String, Integer> getWordCount(String suggestion) {
-        Map<String, Integer> dictionary = new HashMap<>();
-        String[] words = suggestion.split(" ");
-        for (String word : words) {
-            if (!word.isEmpty()) {
-                Integer count = dictionary.get(word);
-                if (count == null) {
-                    count = 0;
-                }
-                dictionary.put(word, ++count);
-            }
+    public static void main(String[] args) {
+        String sentence = "java is the best programming language java";
+        System.out.println(getWordCount(sentence));
+    }
+    public static Map<String, Integer> getWordCount(String sentence) {
+        Map<String, Integer> result = new HashMap<>();
+
+        if (sentence.length() == 0) {
+            return result;
         }
-        return dictionary;
+
+        String[] wordsArray = sentence.split(" ");
+        List<String> wordsList = new ArrayList<>(Arrays.asList(wordsArray));
+
+        for (String word : wordsList) {
+            int wordCount = result.getOrDefault(word, 0);
+            wordCount += 1;
+            result.put(word, wordCount);
+        }
+        return result;
     }
 
-    public static String toString(Map<String, Integer> dictionary) {
-        if (dictionary.isEmpty()) {
+    public static String toString(Map<String, Integer> map) {
+        if (map.isEmpty()) {
             return "{}";
         }
-        var temp = new StringBuilder();
-        temp.append("{");
-        for (Map.Entry<String, Integer> count : dictionary.entrySet()) {
-            temp.append("\n  ").append(count.getKey()).append(": ").append(count.getValue());
+        StringBuilder result = new StringBuilder("{\n");
+        for (String entry : map.keySet()) {
+            //  the: 2
+            result.append("  ").append(entry).append(": ").append(map.get(entry)).append("\n");
         }
-        temp.append("\n}");
-        return String.valueOf(temp);
+        result.append("}");
+        return result.toString();
     }
 }
 //END
