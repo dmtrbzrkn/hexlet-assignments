@@ -9,18 +9,20 @@ import java.util.Map.Entry;
 class App {
     public static List<Map<String, String>> findWhere(List<Map<String, String>> books, Map<String, String> where) {
         List<Map<String, String>> result = new ArrayList<>();
+
         for (Map<String, String> book : books) {
-            for (Map.Entry<String, String> criteria : where.entrySet()) {
-                if (book.containsKey(criteria.getKey()) && book.containsValue(criteria.getValue())) {
-                    if (!result.contains(book)) {
-                        result.add(book);
-                    }
-                } else {
-                    result.remove(book);
-                    break;
+            boolean isFind = true;
+
+            for (Entry<String, String> entry : where.entrySet()) {
+                String value = book.getOrDefault(entry.getKey(), "");
+                if (!value.equals(entry.getValue())) {
+                    isFind = false;
                 }
             }
 
+            if (isFind) {
+                result.add(book);
+            }
         }
         return result;
     }

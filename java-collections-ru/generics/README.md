@@ -4,7 +4,7 @@
 
 ## Задачи
 
-* Создайте класс `App`с публичным статическим методом `findWhere()`, который принимает следующие аргументы:
+* Создайте класс `App` с публичным статическим методом `findWhere()`, который принимает следующие аргументы:
 
   * Список `List` книг. Каждая книга представляет собой словарь `Map`, в котором ключи и значения представлены строками
   * Словарь `Map` из пар ключей и значений, представленных строками
@@ -12,7 +12,7 @@
   Метод должен возвращать список `List` со всеми книгами, данные которых соответствуют всем переданным парам. Если совпадений нет, метод должен вернуть пустой список.
 
 ```java
-List<Map> books = new ArrayList<>();
+List<Map<String, String>> books = new ArrayList<>();
 
 Map<String, String> book1 = new HashMap<>(
 Map.of("title", "Cymbeline", "author", "Shakespeare", "year", "1611")
@@ -38,7 +38,7 @@ books.add(book5);
 
 Map<String, String> where = new HashMap<>(Map.of("author", "Shakespeare", "year", "1611"));
 
-List<Map> result = App.findWhere(books, where);
+List<Map<String, String>> result = App.findWhere(books, where);
 
 System.out.println(result); // =>
 // [
