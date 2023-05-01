@@ -1,26 +1,28 @@
 package exercise;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
 // BEGIN
 class App {
-    public static boolean scrabble(String lettersSet, String word) {
-        boolean isPossible = false;
-        List<Character> lettersList = convertToArrayList(lettersSet);
-        List<Character> wordList = convertToArrayList(word);
-        for (Character letters : lettersList) {
-            isPossible = wordList.contains(letters);
-        }
-        return isPossible;
-    }
+    public static boolean scrabble(String symbols, String word) {
+        //Инициализируем строковый массив, разделив строку посимвольно.
+        String[] letters = symbols.split("");
+        //Инициализируем коллекцию ArrayList, в которую добавляем элементы массива letters.
+        List<String> lettersList = new ArrayList<>(Arrays.asList(letters));
 
-    public static List<Character> convertToArrayList(String string) {
-        List<Character> list = new ArrayList<>();
-        for (int i = 0; i < string.length(); i++) {
-            list.add(string.charAt(i));
+        for (int i = 0; i < word.length(); i++) {
+            //Получаем строку(i-ая букву) в виде подстроки word.
+            String letter = word.substring(i, i + 1).toLowerCase();
+            //Если коллекция не содержит letter, возвращаем false.
+            if (!lettersList.contains(letter)) {
+                return false;
+            }
+            //Если содержит, удаляем элемент из списка.
+            lettersList.remove(letter);
         }
-        return list;
+        return true;
     }
 }
 //END
