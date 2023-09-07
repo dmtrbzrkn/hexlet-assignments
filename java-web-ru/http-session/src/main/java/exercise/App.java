@@ -22,7 +22,8 @@ public final class App {
             var per = ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
 
             List<Map<String, String>> usersList = new ArrayList<>();
-            for (int i = page - 1; i <= (page - 1) + per - 1; i++) {
+            var index = (page - 1) * per;
+            for (int i = index; i < index + per; i++) {
                 usersList.add(USERS.get(i));
             }
             ctx.json(usersList);
