@@ -1,6 +1,8 @@
 package exercise;
 
 import io.javalin.Javalin;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +18,14 @@ public final class App {
 
         // BEGIN
         app.get("/users", ctx -> {
-            var userNumber = ctx.queryParamAsClass("user", Integer.class).getOrDefault(5);
-            var user = USERS.get(userNumber);
-            ctx.json(user);
+            var page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
+            var per = ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
+
+            List<Map<String, String>> usersList = new ArrayList<>();
+            for (int i = page - 1; i <= (page - 1) + per - 1; i++) {
+                usersList.add(USERS.get(i));
+            }
+            ctx.json(usersList);
         });
         // END
 
